@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM manipulation</title>
+        <style>
+            li::marker{
+                content:"*";
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="ul1">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <button onclick="appenditem()">Add items</button>
+        <button onclick="removeitem()">removeitem</button>
+        
+        <script>
+            function appenditem(){
+                const eobj=document.createElement("li");
+                const tobj=document.createTextNode("appended item");
+                const aobj=document.createAttribute("style");
+                aobj.value="color:red";
+
+                const pobj=document.getElementById("ul1");
+                eobj.appendChild(tobj);
+                eobj.setAttributeNode(aobj);
+                pobj.appendChild(eobj);
+                //element.replaceChild(newNode, element.childNodes[0]);
+                //list.insertBefore(newNode, list.children[0]);
+            }
+            function removeitem(){
+                const obj=document.getElementById("ul1");
+                obj.removeChild(obj.lastElementChild);
+            }
+        </script>
+    </body>
+</html>

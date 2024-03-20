@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe</title>
+    <style>
+        div{
+            display: flex;
+            justify-content:center;
+        }
+        table,td{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        #text{
+            text-align: center;
+        }
+        a::after{
+            content:"*";
+        }
+        a:link{
+            color:black;
+            background-color: bisque;
+        }
+        a:visited{
+            color: red;
+            background-color:white;
+        }
+        a:hover{
+            color: blue;
+        }
+        a:active{
+            color:aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <table>
+        <tr>
+            <th rowspan="=2" colspan="12">Your Name<br>punch line etc</th>
+        </tr>
+        <tr>
+            <td colspan="4"><a href="/triangle.html" target="hehe">objective</a></td>
+            <td colspan="4" rowspan="7">
+                <iframe src="" name="hehe"></iframe>
+            </td>
+            <td colspan="4" rowspan="7">Display relevent images here</td>
+        </tr>
+        <tr><td colspan="4"><a href="/Dom-manipulation.html" target="hehe">objective</a></td></tr>
+        <tr><td colspan="4"><a href="/form-validation.html" target="hehe">objective</a></td></tr>
+        <tr><td colspan="4"><a href="/form.html" target="hehe">objective</a></td></tr>
+        <tr><td colspan="4"><a href="" target="hehe">objective</a></td></tr>
+        <tr><td colspan="4"><a href="" target="hehe">objective</a></td></tr>
+        <tr><td colspan="4"><a href="" target="hehe">objective</a></td></tr>
+        <tr>
+            <td colspan="12" id="text">Tour contact details</td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>

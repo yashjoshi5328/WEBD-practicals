@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>form validation</title>
+        <style>
+            div{
+                display:flex;
+                height: 100vh;
+                width:100vw;
+                justify-content: center;
+                align-items: center;
+            }
+            form{
+                width:50vw;
+            }
+        </style>
+    </head>
+    <body>
+    <div>
+        <form>
+            <fieldset>
+                <legend>Login</legend>
+                <label for="uname">Username:</label>
+                <input type="text" id="uname" name="uname" placeholder="Enter your username"><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="xxxxx@xxxx.com"><br><br>
+
+                <label for="pwd">password:</label>
+                <input type="password" id="pwd" name="pwd"><br><br>
+
+                <button type="submit" onclick="return validate()">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+    <script>
+        function validate(){
+/*
+const email = "nikhil@gmail.com"; 
+const emailPattern =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
+const isValid = emailPattern.test(email); 
+console.log(isValid);
+*/
+            var flag=false;
+            //document.forms["myForm"]["fname"].value;
+            var username=document.getElementById("uname").value;
+            var password=document.getElementById("pwd").value;
+            var email=document.getElementById("email").value;
+
+            if(username.trim().length===0){
+                alert("username empty");
+                flag=true;
+            }else if(username.length<6){
+                alert("username too short");
+                flag=ture;
+            }else if(username.search(" ")!=-1){
+                alert("username invalid");
+                flag=true;
+            }
+
+            if(email.trim().length===0){
+                alert("email empty");
+                flag=true;
+            }else if(!email.endsWith(".com")){//email.substr(email.length-4,email.length)
+                alert("email format wrong");
+                flag=true;
+            }else if(email.length>25){
+                alert("email too long");
+                flag=true;
+            }
+
+            if(password.trim().length===0){
+                alert("password empty");
+                flag=true;
+            }else if(password.length<6){
+                alert("password too small");
+                flag=true;
+            }
+            if(flag===true){
+                return false;
+            }
+            return true;
+        }
+    </script>
+    </body>
+</html>
