@@ -1,86 +1,136 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>form validation</title>
+<!DOCTYPE HTML>
+<HTML>
+    <HEAD>
+        <title>Javascript form Validation</title>
         <style>
-            div{
-                display:flex;
+            body{
+                box-sizing: border-box;
                 height: 100vh;
-                width:100vw;
+            }
+            .form-container{
+                height: 100%;
+                display: flex;
                 justify-content: center;
-                align-items: center;
+                align-items:center;
             }
             form{
-                width:50vw;
+                background-color: #eaeaea;
+                padding:10%;
             }
         </style>
-    </head>
-    <body>
-    <div>
-        <form>
+    </HEAD>
+    <BODY>
+        <div class="form-container">
             <fieldset>
-                <legend>Login</legend>
-                <label for="uname">Username:</label>
-                <input type="text" id="uname" name="uname" placeholder="Enter your username"><br><br>
+                <legend>SIGN UP</legend>
+                <form onsubmit="return validateForm()">
+                
+                <label for="uname">UserName:</label>
+                <input type="text" name="uname" id="uname" placeholder="Enter Your UserName"><br><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="xxxxx@xxxx.com"><br><br>
+                <input type="email" name="email" id="email" placeholder="Enter Your Email"><br><br>
 
-                <label for="pwd">password:</label>
-                <input type="password" id="pwd" name="pwd"><br><br>
+                <label for="pwd">Password:</label>
+                <input type="password" name="pwd" id="pwd" placeholder="Enter password"><br><br>
 
-                <button type="submit" onclick="return validate()">Submit</button>
+                <label>Gender</label>
+                <input type="radio" name="gen" id="M" value="M"><label for="M">M</label>
+                <input type="radio" name="gen" id="F" value="F"><label for="F">F</label><br><br>
+
+
+                <input type="checkbox" name="accept" id="terms" value="accept"><label for="terms">Accept terms and conditions</label><br><br>
+                    
+                <input type="submit" value="register" >
+            </form>
             </fieldset>
-        </form>
-    </div>
-    <script>
-        function validate(){
-/*
-const email = "nikhil@gmail.com"; 
-const emailPattern =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
-const isValid = emailPattern.test(email); 
-console.log(isValid);
-*/
-            var flag=false;
-            //document.forms["myForm"]["fname"].value;
-            var username=document.getElementById("uname").value;
-            var password=document.getElementById("pwd").value;
-            var email=document.getElementById("email").value;
+        </div>
+        <script>
+            function validateForm(){
+                    const error=document.getElementsByTagName('p');//error 
 
-            if(username.trim().length===0){
-                alert("username empty");
-                flag=true;
-            }else if(username.length<6){
-                alert("username too short");
-                flag=ture;
-            }else if(username.search(" ")!=-1){
-                alert("username invalid");
-                flag=true;
-            }
+                    const name = document.getElementById('uname').value;
+                    const email= document.getElementById('email').value;
+                    const pwd= document.getElementById('pwd').value;
+                    
+                    //checkbox button have multiple element with multiple name
+                    //return true or false using checked attrbute
+                    const accept= document.getElementById('terms').checked;
+                    
+                    
+                    let flag=1;
+                    
+                    //set error display
+                    function errorDisplay(error){
+                        flag=0;
+                        alert(error);
+                    }
 
-            if(email.trim().length===0){
-                alert("email empty");
-                flag=true;
-            }else if(!email.endsWith(".com")){//email.substr(email.length-4,email.length)
-                alert("email format wrong");
-                flag=true;
-            }else if(email.length>25){
-                alert("email too long");
-                flag=true;
-            }
+                    //name cant be empty
+                    if(name.trim()===""){
+                        errorDisplay("name empty");
+                    }
+                    //name should have atleast 6 letters
+                    if(name.trim().length<6){
+                        errorDisplay("name small");
+                    }
+                    //name shall only be alphanumber
+                    if(!(/^[a-z\sA-Z]+$/).test(name.trim())){
+                        errorDisplay("name wrong");
+                    }
+                    
+                    //email cant be empty
+                    if(email.trim()===""){
+                        errorDisplay("email empty");
+                    }
+                    if(email.trim().length<6){
+                        errorDisplay("email small");
+                    }
+                    if(!(/^[a-zA-Z0-9._%+-]+@[a-zA-Z.-]+\.[a-z]{2,}$/).test(email)){
+                        errorDisplay("email wrong");
+                    }
 
-            if(password.trim().length===0){
-                alert("password empty");
-                flag=true;
-            }else if(password.length<6){
-                alert("password too small");
-                flag=true;
-            }
-            if(flag===true){
-                return false;
-            }
-            return true;
-        }
-    </script>
-    </body>
-</html>
+                    //password
+                    if(pwd.trim()===""){
+                        errorDisplay("password empty");
+                    }
+                    if(pwd.length<6){
+                        errorDisplay("password small");
+                    }
+
+                    //terms accepted or no?
+                    if(!accept){
+                        errorDisplay("oh so you not gonna sign it huh");
+                    }
+                    if(flag){
+                        alert('sucess');
+                        return true;
+                    }
+                    return false;
+                }
+                //regex lesson
+                //these regex aint a string 
+                //1)'/^': means start with
+                //2) '$/': means end with
+                //3) '/^[a-zA-z]*$/' means can have alphabets and can be empty
+                //4) '/^[a-zA-Z]+$/' means atleast one alphabet
+                //5) '/^[a-zA-Z0-9]+$/' means can have alphabhet as well as numbers
+                //6) '/^[a-zA-Z][a-zA-Z0-9]*$/'
+                //7) '/^[a-zA-Z]*[0-9]?[a-zA-z]*$/' //can have atmost 1 number '?' for optional
+                //8) '/^[a-zA-Z]{4}$/' exactly 4 alphabets
+                //9) '/^[a-zA-Z]{0,4}' atmost 4 atleast 0
+                //10) '/^9900/' must start with 9900
+                //11) '/010/' must have substring with 010
+                //12) '\s' for space
+
+                //backup function
+                //substring finder function
+                // str_to search.indexOf(substring_to_find) : return -1 if not found else return the index
+                
+                //email regex:
+                // '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/'
+                
+                
+        </script>
+    </BODY>
+</HTML>
