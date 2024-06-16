@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exponent Calculator</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+        .exponent-cal{
+            background-color: #eaeaea;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #num1Error, #num2Error{
+            color: red;
+            margin: 0;
+        }
+        .result{
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="exponent-cal">
+        <label for="num1">NUM1:</label><br>
+        <input type="number" name="num1" id="num1"><br>
+        <p id="num1Error"></p><br>
+
+        <label for="num2">NUM2:</label><br>
+        <input type="number" name="num2" id="num2">
+        <p id="num2Error"></p><br><br>
+
+        <button id="calculate">Calculate</button>
+    </div>
+    <div class="result">
+        <p id="result"></p>
+    </div>
+    <script>
+        const calculate = document.getElementById('calculate');
+        
+        calculate.addEventListener('click', () => {
+            const num1 = Number(document.getElementById('num1').value);
+            const num2 = Number(document.getElementById('num2').value);
+            const num1Error = document.getElementById('num1Error');
+            const num2Error = document.getElementById('num2Error');
+            const result = document.getElementById('result');
+
+            let isValid = true;
+
+            if (num1 <= 0 || num1 >= 25) {
+                num1Error.innerHTML = "NUM1 must be in the range (0, 25)";
+                isValid = false;
+            } else {
+                num1Error.innerHTML = "";
+            }
+
+            if (num2 <= 0 || num2 >= 25) {
+                num2Error.innerHTML = "NUM2 must be in the range (0, 25)";
+                isValid = false;
+            } else {
+                num2Error.innerHTML = "";
+            }
+
+            if (isValid) {
+                let ans = 1;
+                for (let i = 0; i < num2; i++) {
+                    ans *= num1;
+                }
+                result.innerHTML = "Result is " + ans;
+            } else {
+                result.innerHTML = "";
+            }
+        });
+    </script>
+</body>
+</html>

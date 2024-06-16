@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey form</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <fieldset>
+            <legend>Survey Form</legend>
+            <form onsubmit="return validate()">
+                <label for="name">Name:</label><br>
+                <input type="text" name="name" id="name"><br>
+                <p id="nameError"></p><br><br>
+
+                <label for="email">Email</label><br>
+                <input type="email" name="email" id="email"><br>
+                <p id="emailError"></p><br><br>
+
+                <label>Rate</label><br>
+                <input type="radio" name="rate" id="rate" value="1">
+                <label>1</label>
+                <input type="radio" name="rate" id="rate" value="2">
+                <label>2</label>
+                <input type="radio" name="rate" id="rate" value="3">
+                <label>3</label>
+                <input type="radio" name="rate" id="rate" value="4">
+                <label>4</label>
+                <input type="radio" name="rate" id="rate" value="5">
+                <label>5</label><br><br>
+
+                <label>Comment</label><br>
+                <textarea name="comment" id="comment"></textarea><br>
+                <p id="commentError"></p><br><br><br><br>
+                
+                <input type="submit">
+            </form>
+        </fieldset>
+    </div>
+    <script>
+        const name=document.getElementById('name').value;
+        const email=document.getElementById('email').value;
+        const comment=document.getElementById('comment').value;
+
+        const nameError=document.getElementById('nameError');
+        const emailError=document.getElementById('emaiError');
+        const commentError=document.getElementById('commentError');
+
+        function validate(){
+            let flag=1;
+            if(name===""){
+                nameError.innerHTML='name empty';
+                flag=0;
+            }
+            else if(!/^[a-zA-Z]+$/.test(name)){
+                nameError.innerHTML='name invalid';
+                flag=0;
+            }
+            else if(name.e){
+                nameError.innerHTML='name invalid';
+                flag=0;
+            }
+        }
+    </script>
+</body>
+</html>
