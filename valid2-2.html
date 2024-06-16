@@ -54,14 +54,28 @@
                 nameError.innerHTML='name empty';
                 flag=0;
             }
+            else if(name.length<6){
+                nameError.innerHTML='name small';
+                flag=0;
+            }
             else if(!/^[a-zA-Z]+$/.test(name)){
                 nameError.innerHTML='name invalid';
                 flag=0;
             }
-            else if(name.e){
-                nameError.innerHTML='name invalid';
-                flag=0;
+            else{
+                nameError.innerHTML='';
             }
+
+            if(email.length===''){
+                emailError.innerHTML='EMAIL empty';
+            }
+            else if(!/^[a-zA-Z+-.%]+@[a-zA-z+.]+.[a-z]{2,0)$/.test(email)){
+                emailError.innerHTML='EMAIL invalid';
+            }
+            else{
+                emailError.innerHTML='';
+            }
+
         }
     </script>
 </body>
